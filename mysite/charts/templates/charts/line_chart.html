@@ -1,0 +1,51 @@
+{% load static %}
+<html>
+    <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    </head>
+    <body>
+    <div id="wrapper">
+        {% include 'sidebar.html' %}
+        <div id="page-content-wrapper">
+            <div class="container-fluid">  
+                <form action="PageObjects" method="post">
+                    <select onchange="form.submit();">
+                        <option selected="selected" disabled>Objects on page:</option>
+                        <option value="10">10</option>
+                        <option value="20">20</option>
+                        <option value="30">30</option>
+                        <option value="40">40</option>
+                        <option value="50">50</option>
+                    </select>
+                </form>    
+
+                <div class="row">
+                    <div class="col-md-8">
+                        {{ line_chart.as_html }}
+                    </div>
+                    <div class="col-md-4">
+                        <select class="form-control" w>
+                            <option>years</option>
+                            <option>Ketchup</option>
+                            <option>Relish</option>
+                        </select>
+                        <select class="form-control" w>
+                            <option>month</option>
+                            <option>Ketchup</option>
+                            <option>Relish</option>
+                        </select>
+                        <select class="form-control" w>
+                            <option>day</option>
+                            <option>Ketchup</option>
+                            <option>Relish</option>
+                        </select>
+                    </div>
+                </div>
+            </div>  
+        </div>
+    </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.bundle.min.js"></script>
+    </body>
+</html>
+
