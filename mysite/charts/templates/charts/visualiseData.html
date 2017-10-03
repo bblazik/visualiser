@@ -1,23 +1,23 @@
 {% load static %}
 
 <html>
-    <head>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
-    </head>
-    <body>
-        <div id="wrapper">
-            {% include 'sidebar.html' %}
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+</head>
+<body>
+    <div id="wrapper">
+        {% include 'sidebar.html' %}
         <div id="page-content-wrapper">
             <div class="container-fluid">  
             <table class = "table">
-                    <thead>
-                            <tr>
-                            <th>Expendings</th>
-                            <th>Balance</th>
-                            <th>Data</th>
-                            </tr>
-                        </thead>
+                <thead>
+                    <tr>
+                    <th>Expendings</th>
+                    <th>Balance</th>
+                    <th>Data</th>
+                    </tr>
+                </thead>
                 <tbody>
                     {% for record in recordList %}
                     <tr>
@@ -30,7 +30,7 @@
             </table>
             </div>
         </div>
-        </div>
-    </body>
+    </div>
+</body>
     
 </html>

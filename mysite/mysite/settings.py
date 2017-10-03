@@ -120,5 +120,6 @@ BOWER_INSTALLED_APPS = (
     'bootstrap',
     'fontawesome',
     'popper.js',
+    'chart.js',
 )
 

@@ -2,23 +2,24 @@
 <head>
     <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{% static "charts/sidebar.css" %}" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 </head>    
-        <!-- Sidebar -->
-        <div id="sidebar-wrapper">
-            <ul class="sidebar-nav" style="margin-left:0;">
-                <li class="sidebar-brand">
-                    <a href="#menu-toggle"  id="menu-toggle" style="margin-top:20px;float:right;" > <i class="fa fa-bars " style="font-size:20px !Important;" aria-hidden="true" aria-hidden="true"></i>             
-                </li>
-                <li>
-                    <a href="data"><i class="fa fa-sort-alpha-asc " aria-hidden="true"> </i> <span style="margin-left:10px;">Your records</span>  </a>
-                </li>
-                <li>
-                    <a href="monthlyRecord"> <i class="fa fa-play-circle-o " aria-hidden="true"> </i> <span style="margin-left:10px;"> Monthly report</span> </a>
-                </li>
-                <li>
-                    <a href="yearlyRecord"> <i class="fa fa-puzzle-piece" aria-hidden="true"> </i> <span style="margin-left:10px;"> Year report</span> </a>
-                </li>            
-            </ul>
-        </div>
-        <script src = "{% static "charts/toggle.js" %}"></script>
+<!-- Sidebar -->
+<div id="sidebar-wrapper">
+    <ul class="sidebar-nav" style="margin-left:0;">
+        <li class="sidebar-brand">
+            <a href="#menu-toggle"  id="menu-toggle" style="margin-top:20px;float:right;" > <i class="fa fa-bars " style="font-size:20px !Important;" aria-hidden="true" aria-hidden="true"></i>             
+        </li>
+        <li>
+            <a href="data"><i class="fa fa-sort-alpha-asc " aria-hidden="true"> </i> <span style="margin-left:10px;">Your records</span>  </a>
+        </li>
+        <li>
+            <a href="monthlyRecord"> <i class="fa fa-play-circle-o " aria-hidden="true"> </i> <span style="margin-left:10px;"> Monthly report</span> </a>
+        </li>
+        <li>
+            <a href="yearlyRecord"> <i class="fa fa-puzzle-piece" aria-hidden="true"> </i> <span style="margin-left:10px;"> Year report</span> </a>
+        </li>            
+    </ul>
+</div>
+<script src = "{% static "charts/toggle.js" %}"></script>
 	
