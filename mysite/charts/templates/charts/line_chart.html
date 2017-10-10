@@ -26,9 +26,12 @@
                 <div class="container">
                         <div class="row">
                             <div class='col-sm-6'>
-                                <input type='text' class="form-control" id='datetimepicker4' />
+                                <form action="date" method="post" id="viewDate">
+                                    <input type='text' class="form-control" id='datetimepicker4'/>                                    
+                                    <input type="hidden" id="my_hidden_input" value="" onchange="form.submit();">
+                                </form>                                
                             </div>
-                            <script src = "{% static "charts/picker.js" %}"></script>
+                            
                         </div>
                 </div>
 
@@ -43,11 +46,13 @@
     </div>
         
     <script src = "{% static "chart.js/dist/Chart.bundle.min.js "%}"></script>
-    <script src = '{% static 'jquery/dist/jquery.min.js' %}'></script>
+    <script src = '{% static 'jquery/dist/jquery.slim.min.js' %}'></script>
     <script src = "{% static "moment/min/moment.min.js" %}"></script>
-    <script src = "{% static "popper.js/dist/popper.js" %}"></script>
+    <script src = "{% static "popper.js/dist/umd/popper.js" %}"></script>
     <script src = '{% static 'eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js' %}'></script>
+    <script src = "{% static "charts/picker.js" %}" />
     <script src = '{% static 'bootstrap/dist/js/bootstrap.min.js' %}' />
+    
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     </body>
 </html>

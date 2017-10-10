@@ -58,6 +58,11 @@ def yearlyReport(request):
         'line_chart': LineChart(prepereYearlyData()),
     })
 
+def setViewForDate(request):
+    return render(request, 'line_chart.html', {
+        'line_chart': LineChart(prepereYearlyData()),
+    })
+
 def prepereYearlyData():
     exampleData = datetime.strptime('2017-09-15', '%Y-%m-%d')
     rlist = RecordList().mergedExpensesByYear(exampleData)
