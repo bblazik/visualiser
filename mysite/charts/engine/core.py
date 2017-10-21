@@ -6,6 +6,7 @@ import matplotlib.pyplot as plt
 import prettyplotlib as ppl
 import string
 import os
+import calendar
 
 class RecordList:
     recordList = []
@@ -71,7 +72,7 @@ class RecordList:
     def mergedExpensesByMonth(self, date):
         recordsInMonth = []
         sum = 0.0
-        for i in range(1,31):
+        for i in range(1, calendar.monthrange(date.year,date.month)[1] ):
             newdate = date.replace(day = i)
             sum = self.sumExpensesInDay(newdate)
             recordsInMonth.append(sum)

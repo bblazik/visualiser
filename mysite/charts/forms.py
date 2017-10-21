@@ -1,7 +1,7 @@
 from bootstrap3_datetime.widgets import DateTimePicker
 from django import forms
 
-class Form(forms.Form):
+class Formx(forms.Form):
     todo = forms.CharField(
         widget=forms.TextInput(attrs={"class": "form-control"}))
     date = forms.DateField(
@@ -11,3 +11,6 @@ class Form(forms.Form):
         required=False,
         widget=DateTimePicker(options={"format": "YYYY-MM-DD HH:mm",
                                        "pickSeconds": False}))
+
+class InputDataForm(forms.Form):
+    date = forms.DateField(label="date")

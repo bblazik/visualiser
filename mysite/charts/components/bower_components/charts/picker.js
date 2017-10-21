@@ -1,18 +1,15 @@
-var dateNow = new Date();
-var bool = true;
-$('#datetimepicker4').datetimepicker({
-    defaultDate:dateNow,
+$('#datetimepicker10').datetimepicker({
+    viewMode: 'years',
+    format: 'MM/YYYY'
 });
-$('#datetimepicker4').on('dp.change', function(e){
-    // alert("dupa");
+$('#datetimepicker10').on('dp.change', function(e){
+    //alert("dupa");
+    
     $(this).datetimepicker('hide');
-    console.log(e.date._d);
-
-    $(function () {
-        $('#my_hidden_input').val("fgg");
-      });
-
-      $('#viewDate').submit();
+    console.log(e.date.format('DD MM YYYY'));
+    $(this).datetimepicker.value = e.date._d;
+    document.viewDate.date.value = e.date.format('DD MM YYYY');
+    $('#viewDate').submit();
     
 });
 

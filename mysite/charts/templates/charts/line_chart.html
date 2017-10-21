@@ -1,59 +1,73 @@
 {% load static %}
 <html>
-    <head>
-        <link href="//netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-        <link rel="stylesheet" href="{% static "bootstrap/dist/css/bootstrap.min.css"%}"/>
-        <link href="{% static "eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css"%}" rel="stylesheet">
-    </head>
+<head>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static "bootstrap/dist/css/bootstrap.min.css"%}"/>
+    <link rel="stylesheet" href= "{% static "charts/arrows.css"%}" />
+    <link href="{% static "eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css"%}" rel="stylesheet">
+</head>
 
-    <body>
-    <div id="wrapper">
-        {% include 'sidebar.html' %}
-        <div id="page-content-wrapper">
-            <div class="container-fluid">  
-                
-                <form action="PageObjects" method="post">
-                    <select onchange="form.submit();">
-                        <option selected="selected" disabled>Objects on page:</option>
-                        <option value="10">10</option>
-                        <option value="20">20</option>
-                        <option value="30">30</option>
-                        <option value="40">40</option>
-                        <option value="50">50</option>
-                    </select>
-                </form>
-                
-                <div class="container">
-                        <div class="row">
-                            <div class='col-sm-6'>
-                                <form action="date" method="post" id="viewDate">
-                                    <input type='text' class="form-control" id='datetimepicker4'/>                                    
-                                    <input type="hidden" id="my_hidden_input" value="" onchange="form.submit();">
-                                </form>                                
-                            </div>
-                            
-                        </div>
-                </div>
-
+<body>
+<div id="wrapper">
+    {% include 'sidebar.html' %}
+    <div id="page-content-wrapper">
+        <div class="container-fluid">  
+            
+            <!-- <form action="PageObjects" method="post">
+                <select onchange="form.submit();">
+                    <option selected="selected" disabled>Objects on page:</option>
+                    <option value="10">10</option>
+                    <option value="20">20</option>
+                    <option value="30">30</option>
+                    <option value="40">40</option>
+                    <option value="50">50</option>
+                </select>
+            </form> -->        
+            <div class="container">
                 <div class="row">
-                    <div class="col-md-8">
-                        {{ line_chart.as_html }}
-                    </div>
+                    <div class="col-sm-6" style="margin-left:10%;width:60%;">
+                        <form action="date" method="post" id="viewDate" name="viewDate">
+                            {% csrf_token %}                                                        
+                            <input type='text' class="form-control" id='datetimepicker10'  data-date-default-date="{{targetDate}}"/>
+                            <input type="hidden" id="my_hidden_input" name="date" value="" onchange="form.submit();">
+                        </form>                                
+                    </div>                            
+                </div>
+            </div>                
+            <div class="row">                                                        
+
+                <div class="col-md-1" style="top:200px" >
+                    <form action="previousMonth" method="post">
+                        {% csrf_token %}
+                        <button style="border:none" type="submit" name="date" id="pm" value="{{targetDate}}" class="previous round">&#8249;</a>
+                    </form>                    
                 </div>
 
-            </div>  
-        </div>
+                <div class="col-md-9">                    
+                    {{ line_chart.as_html }}                        
+                </div>
+
+                <div class="col-md-1" align="center" style="top:200px">     
+                    <form action="nextMonth" method="post">
+                        {% csrf_token %}
+                        <button style="border:none" type="submit" name="date" id="nm"  value="{{targetDate}}" class="next round">&#8250;</a>
+                    </form>
+                </div>
+
+            </div>
+        </div>  
     </div>
-        
-    <script src = "{% static "chart.js/dist/Chart.bundle.min.js "%}"></script>
-    <script src = '{% static 'jquery/dist/jquery.slim.min.js' %}'></script>
-    <script src = "{% static "moment/min/moment.min.js" %}"></script>
-    <script src = "{% static "popper.js/dist/umd/popper.js" %}"></script>
-    <script src = '{% static 'eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js' %}'></script>
-    <script src = "{% static "charts/picker.js" %}" />
-    <script src = '{% static 'bootstrap/dist/js/bootstrap.min.js' %}' />
+</div>
     
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    </body>
+<script src = "{% static "chart.js/dist/Chart.bundle.min.js "%}"></script>
+<script src = '{% static 'jquery/dist/jquery.slim.min.js' %}'></script>
+<script src = "{% static "moment/min/moment.min.js" %}"></script>
+<script src = "{% static "popper.js/dist/umd/popper.js" %}"></script>
+<script src = '{% static 'eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js' %}'></script>
+<script src = '{% static 'charts/picker.js' %}'></script>
+<script src = '{% static 'bootstrap/dist/js/bootstrap.min.js' %}'></script>
+<script src = '{% static 'charts/arrowKeysHandler.js'%}'></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
 </html>
 

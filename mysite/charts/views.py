@@ -12,6 +12,7 @@ from jchart.config import Axes, DataSet
 
 from .engine.core import RecordList
 from datetime import datetime
+from dateutil.relativedelta import relativedelta
 
 import sys
 
@@ -42,6 +43,7 @@ class LineChart(Chart):
         ]
         return data
 
+targetDate = datetime.now().strftime('%m %d %Y')
 
 def index(request):
     sum = sample.sumTwo()
@@ -51,6 +53,7 @@ def index(request):
 def monthlyReport(request):
     return render(request, 'line_chart.html', {
         'line_chart': LineChart(prepereMonthlyData()),
+        'targetDate': targetDate
     })
 
 def yearlyReport(request):
@@ -63,22 +66,54 @@ def setViewForDate(request):
         'line_chart': LineChart(prepereYearlyData()),
     })
 
-def prepereYearlyData():
-    exampleData = datetime.strptime('2017-09-15', '%Y-%m-%d')
-    rlist = RecordList().mergedExpensesByYear(exampleData)
+def prepereYearlyData(data = datetime.strptime('2017-09-15', '%Y-%m-%d')):
+    rlist = RecordList().mergedExpensesByYear(data)
     rrlist = []
     for i in range(0, len(rlist)):
         rrlist.append( (i+1, rlist[i]))
     return rrlist
 
-def prepereMonthlyData():
-    exampleData = datetime.strptime('2017-06-11', '%Y-%m-%d')
-    rlist = RecordList().mergedExpensesByMonth(exampleData)
+def prepereMonthlyData(data= datetime.strptime('2017-09-15', '%Y-%m-%d')):
+    #exampleData = datetime.strptime('2017-06-11', '%Y-%m-%d')
+    
+    rlist = RecordList().mergedExpensesByMonth(data)
     rrlist = []
     for i in range(0, len(rlist)):
         rrlist.append( (i+1, rlist[i]))
     return rrlist
 
-def visualiseData(request):
+def nextMonth(request):
+    targetDate = datetime.now()
+    if request.method == 'POST':
+        targetDate = datetime.strptime(request.POST.get('date'), '%m %d %Y' )        
+    targetDate = targetDate + relativedelta(months=1)
+    return render(request, 'line_chart.html', {
+        'line_chart': LineChart(prepereMonthlyData(targetDate)),
+        'targetDate': targetDate.strftime('%m %d %Y')
+    })
+
+def previousMonth(request):
+    print(request.POST)
+    if request.method == 'POST':
+        targetDate = datetime.strptime(request.POST.get('date'), '%m %d %Y' )
+    targetDate = targetDate - relativedelta(months=1)
+    return render(request, 'line_chart.html', {
+        'line_chart': LineChart(prepereMonthlyData(targetDate)),
+        'targetDate': targetDate.strftime('%m %d %Y')
+    })
+
+def visualiseDate(request):
     recordList = {'recordList' : RecordList().recordList}
     return render(request, 'visualiseData.html', recordList)
+
+def date(request):    
+    if request.method == 'POST':
+        targetDate = datetime.strptime(request.POST.get('date'), '%m %d %Y' )
+        
+    return render(request, 'line_chart.html', {
+        'line_chart': LineChart(prepereMonthlyData(targetDate)),
+        'targetDate': targetDate.strftime('%m %d %Y')
+    })
+
+
+
