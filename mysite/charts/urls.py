@@ -7,7 +7,7 @@ urlpatterns = [
     url(r'^monthlyRecord$', views.monthlyReport, name='monthlyRecc'),
     url(r'^yearlyRecord$', views.yearlyReport, name='yearlyRecord'),
     url(r'^visualiseDate$', views.visualiseDate, name='visualiseDate'),
-    url(r'^date$', views.date, name='date'),
+    url(r'^pickedDate$', views.pickedDate, name='pickedDate'),
     url(r'^nextMonth$', views.nextMonth, name=''),
     url(r'^previousMonth$', views.previousMonth, name=''),
 ]

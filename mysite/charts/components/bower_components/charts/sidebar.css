@@ -2,6 +2,22 @@ body {
     overflow-x: hidden;
  }
 
+ .boxIncome{
+     background-color: #1BC98E
+ }
+
+ .boxExpenses{
+    background-color: #E64759
+ }
+
+ .label{
+    letter-spacing: .15em;
+ }
+
+ .sumText{
+    font-weight: normal;
+    color: rgba(255, 255, 255, 0.65);
+ }
 /* Toggle Styles */
 
 #wrapper {

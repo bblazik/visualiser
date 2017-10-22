@@ -5,6 +5,7 @@ window.onkeyup = function(e) {
         document.getElementById('pm').click();
     }else if (key == 39) { //right
          document.getElementById('nm').click();
+         
         //$('#nm').submit();
     }
     

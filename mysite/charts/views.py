@@ -45,11 +45,6 @@ class LineChart(Chart):
 
 targetDate = datetime.now().strftime('%m %d %Y')
 
-def index(request):
-    sum = sample.sumTwo()
-    context = {'sum': sum}
-    return render(request, 'index.html', context)
-
 def monthlyReport(request):
     return render(request, 'line_chart.html', {
         'line_chart': LineChart(prepereMonthlyData()),
@@ -61,11 +56,6 @@ def yearlyReport(request):
         'line_chart': LineChart(prepereYearlyData()),
     })
 
-def setViewForDate(request):
-    return render(request, 'line_chart.html', {
-        'line_chart': LineChart(prepereYearlyData()),
-    })
-
 def prepereYearlyData(data = datetime.strptime('2017-09-15', '%Y-%m-%d')):
     rlist = RecordList().mergedExpensesByYear(data)
     rrlist = []
@@ -73,9 +63,7 @@ def prepereYearlyData(data = datetime.strptime('2017-09-15', '%Y-%m-%d')):
         rrlist.append( (i+1, rlist[i]))
     return rrlist
 
-def prepereMonthlyData(data= datetime.strptime('2017-09-15', '%Y-%m-%d')):
-    #exampleData = datetime.strptime('2017-06-11', '%Y-%m-%d')
-    
+def prepereMonthlyData(data= datetime.strptime('2017-09-15', '%Y-%m-%d')):    
     rlist = RecordList().mergedExpensesByMonth(data)
     rrlist = []
     for i in range(0, len(rlist)):
@@ -83,37 +71,35 @@ def prepereMonthlyData(data= datetime.strptime('2017-09-15', '%Y-%m-%d')):
     return rrlist
 
 def nextMonth(request):
-    targetDate = datetime.now()
     if request.method == 'POST':
         targetDate = datetime.strptime(request.POST.get('date'), '%m %d %Y' )        
-    targetDate = targetDate + relativedelta(months=1)
-    return render(request, 'line_chart.html', {
-        'line_chart': LineChart(prepereMonthlyData(targetDate)),
-        'targetDate': targetDate.strftime('%m %d %Y')
-    })
-
+        targetDate = targetDate + relativedelta(months=1)
+        return renderPageData(targetDate, request)
+    
 def previousMonth(request):
-    print(request.POST)
     if request.method == 'POST':
         targetDate = datetime.strptime(request.POST.get('date'), '%m %d %Y' )
-    targetDate = targetDate - relativedelta(months=1)
+        targetDate = targetDate - relativedelta(months=1)
+        return renderPageData(targetDate, request)
+
+def pickedDate(request):    
+    if request.method == 'POST':
+        targetDate = datetime.strptime(request.POST.get('date'), '%m %d %Y' )
+        return renderPageData(targetDate, request)
+    
+def renderPageData(targetDate, request):
+    expenses = RecordList().sumExpensesInMonth(targetDate)
+    income = RecordList().sumIncomeInMonth(targetDate);
+
     return render(request, 'line_chart.html', {
         'line_chart': LineChart(prepereMonthlyData(targetDate)),
-        'targetDate': targetDate.strftime('%m %d %Y')
+        'targetDate': targetDate.strftime('%m %d %Y'),
+        'expenses': expenses,
+        'income': income,
     })
 
 def visualiseDate(request):
     recordList = {'recordList' : RecordList().recordList}
     return render(request, 'visualiseData.html', recordList)
-
-def date(request):    
-    if request.method == 'POST':
-        targetDate = datetime.strptime(request.POST.get('date'), '%m %d %Y' )
-        
-    return render(request, 'line_chart.html', {
-        'line_chart': LineChart(prepereMonthlyData(targetDate)),
-        'targetDate': targetDate.strftime('%m %d %Y')
-    })
-
 
 
