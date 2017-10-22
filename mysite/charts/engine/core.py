@@ -21,7 +21,7 @@ class RecordList:
             next(reader, None)
             self.recordList = []
             for row in reader:
-                self.recordList.append(Record(row[0], round(float(row[3]),2), row[0]))
+                self.recordList.append(Record(row[0], round(float(row[3]),2), row[0], row[5]))
             return self.recordList
     
     def findByYear(self, date):
@@ -117,18 +117,20 @@ class RecordList:
 class Record:
     date = datetime.MINYEAR
     amount = 0.0
+    balance = 0.0
     description = ""
-    def __init__(self, d, a, desc):
+    def __init__(self, d, a, desc, b=0.0):
         self.date = datetime.datetime.strptime(d, '%Y-%m-%d')
         self.amount = a
+        self.balance = b
         self.description = desc
     
     def __str__(self):
-        return str(self.date, self.amount, self.description)
+        return str(self.date, self.amount, self.description, self.balance)
 
     def __repr__(self):
         delimiter = " "
-        seq = (str(self.date.month),str(self.date.year), str(self.amount), str(self.description))
+        seq = (str(self.date.month),str(self.date.year), str(self.amount), str(self.description),str(self.balance))
         return delimiter.join(seq)
 
 rlist = RecordList()

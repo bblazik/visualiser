@@ -32,7 +32,7 @@ class LineChart(Chart):
 
     def get_datasets(self, **kwargs):
         data = [
-            DataSet(label= "My Dataset",
+            DataSet(label= "Expenses",
                 backgroundColor = 'rgba(230,71,89, 0.7)',
                 data= [{'x': record[0], 'y': record[1]} for record in self.rrlist[0]]
             ),
