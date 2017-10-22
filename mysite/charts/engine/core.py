@@ -53,6 +53,14 @@ class RecordList:
                 sum += row.amount
         return sum
     
+    def sumIncomeInDay(self, date):
+        records = self.findByDay(date)
+        sum = 0.0
+        for row in records:
+            if row.amount > 0:
+                sum += row.amount
+        return sum
+    
     def sumExpensesInMonth(self, var):
         records = self.findByMonth(var)
         sum = 0.0
@@ -78,6 +86,15 @@ class RecordList:
             recordsInMonth.append(sum)
         return recordsInMonth
 
+    def mergedIncomeByMonth(self, date):
+        recordsInMonth = []
+        sum = 0.0
+        for i in range(1, calendar.monthrange(date.year,date.month)[1] ):
+            newdate = date.replace(day = i)
+            sum = self.sumIncomeInDay(newdate)
+            recordsInMonth.append(sum)
+        return recordsInMonth
+
     def mergedExpensesByYear(self, date):
         recordsInYear = []
         sum = 0.0
@@ -86,6 +103,16 @@ class RecordList:
             sum = self.sumExpensesInMonth(newdate)
             recordsInYear.append(sum)
         return recordsInYear
+
+    def mergedIncomeByYear(self, date):
+        recordsInYear = []
+        sum = 0.0
+        for i in range(0,11):
+            newdate = date.replace(month = i+1)
+            sum = self.sumIncomeInMonth(newdate)
+            recordsInYear.append(sum)
+        return recordsInYear
+    
 
 class Record:
     date = datetime.MINYEAR

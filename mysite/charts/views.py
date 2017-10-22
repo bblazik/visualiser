@@ -26,19 +26,19 @@ class LineChart(Chart):
     scales = {
         'xAxes': [Axes(type='linear', position='bottom')],
     }
-    def __init__(self, records):
+    def __init__(self, records): # there must be initialization list with multiple arguments
         self.rrlist = records
         super(LineChart,self).__init__()
 
     def get_datasets(self, **kwargs):
         data = [
             DataSet(label= "My Dataset",
-                backgroundColor = 'rgba(255, 99, 132, 0.7)',
-                data= [{'x': record[0], 'y': record[1]} for record in self.rrlist]
+                backgroundColor = 'rgba(230,71,89, 0.7)',
+                data= [{'x': record[0], 'y': record[1]} for record in self.rrlist[0]]
             ),
-            DataSet(label= "My Dataset1",
-                backgroundColor = 'rgba(255, 99, 0, 0.7)',
-                data= [{'x': record[0], 'y': record[1]} for record in self.rrlist]
+            DataSet(label= "Income",
+                backgroundColor = 'rgba(27,	201, 142, 0.7)',
+                data= [{'x': record[0], 'y': record[1]} for record in self.rrlist[1]]
             )
         ]
         return data
@@ -58,16 +58,24 @@ def yearlyReport(request):
 
 def prepereYearlyData(data = datetime.strptime('2017-09-15', '%Y-%m-%d')):
     rlist = RecordList().mergedExpensesByYear(data)
-    rrlist = []
+    ilist = RecordList().mergedIncomeByYear(data)
+
+    rrlist = [[], []]
     for i in range(0, len(rlist)):
-        rrlist.append( (i+1, rlist[i]))
+        rrlist[0].append( (i+1, rlist[i]))
+    for i in range(0, len(ilist)):
+        rrlist[1].append( (i+1, ilist[i]))
     return rrlist
 
 def prepereMonthlyData(data= datetime.strptime('2017-09-15', '%Y-%m-%d')):    
     rlist = RecordList().mergedExpensesByMonth(data)
-    rrlist = []
+    ilist = RecordList().mergedIncomeByMonth(data)
+
+    rrlist = [[], []]
     for i in range(0, len(rlist)):
-        rrlist.append( (i+1, rlist[i]))
+        rrlist[0].append( (i+1, rlist[i]))
+    for i in range(0, len(ilist)):
+        rrlist[1].append( (i+1, ilist[i]))
     return rrlist
 
 def nextMonth(request):
