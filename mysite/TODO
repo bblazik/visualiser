@@ -4,11 +4,14 @@ Todo:
   ☐ Dates visualise in one chart
   ✔ Febuary problem
   ☐ Year chart
-  ☐ Buttons vertical center properly
-  ☐ Your record properly fix
+  ✘ Buttons vertical center properly
+  ✔ Your record properly fix
   ✔ Month expendes and income =-= in progress
   ✔ Add Income to 
   ✔ Add keys handling
   ☐ max min date depends on 
   ☐ account balance maybe ?
   ☐ add chart types.
+  ☐ add value labels on chart!
+  ☐ untoggle when change month bug
+  ☐ enter + ctrl, alt + c, d

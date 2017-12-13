@@ -77,6 +77,13 @@ class RecordList:
                 sum += row.amount
         return sum
 
+    def balanceInMonth(self, date): # wrong
+        balance = [range(1, calendar.monthrange(date.year,date.month)[1])]
+        records = self.findByMonth(date)
+        for i in records :
+            balance[i.date.day] = i.balance
+        return balance
+
     def mergedExpensesByMonth(self, date):
         recordsInMonth = []
         sum = 0.0

@@ -7,6 +7,12 @@ window.onkeyup = function(e) {
          document.getElementById('nm').click();
          
         //$('#nm').submit();
+    }else if (key==72){
+        // $("#menu-toggle").click(function(e) {
+        //     e.preventDefault();
+        //     $("#wrapper").toggleClass("toggled");
+        // });
+        document.getElementById('menu-toggle').click();
     }
     
     

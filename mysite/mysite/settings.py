@@ -10,7 +10,7 @@ SECRET_KEY = 'h^r0v1wptheq$$)013w=*1)^33j-oxx^$@gfw#0m=2znubvra6'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['192.168.1.101']
 
 
 PROJECT_ROOT = os.path.abspath(

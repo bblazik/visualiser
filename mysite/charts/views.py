@@ -39,7 +39,12 @@ class LineChart(Chart):
             DataSet(label= "Income",
                 backgroundColor = 'rgba(27,	201, 142, 0.7)',
                 data= [{'x': record[0], 'y': record[1]} for record in self.rrlist[1]]
+            ),
+            DataSet(label= "Balance",
+                backgroundColor = 'rgba(27,	201, 142, 0.7)',
+                data= [{'x': record[0], 'y': record[1]} for record in self.rrlist[1]]
             )
+
         ]
         return data
 
